@@ -20,7 +20,9 @@ class _retrieveDataState extends State<retrieveData> {
       var data = snap.value;
       allData.clear();
       for (var key in keys) {
-        myData d = new myData(data[key]['Fajr'],
+        myData d = new myData(
+            data[key]['MName'],
+            data[key]['Fajr'],
             data[key]['Dhur'],
             data[key]['Asr'],
             data[key]['Maghrib'],
@@ -49,6 +51,7 @@ class _retrieveDataState extends State<retrieveData> {
     return Scaffold(
         appBar: new AppBar(
           title: new Text('Firebase Data'),
+          backgroundColor: Colors.brown,
         ),
 
         body: new Container(
@@ -57,7 +60,7 @@ class _retrieveDataState extends State<retrieveData> {
                 : new ListView.builder(
                 itemCount: allData.length,
                 itemBuilder: (_,index) {
-                  return UI(allData[index].Fajr,allData[index].Dhur,allData[index].Asr,allData[index].Maghrib,allData[index].Isha,
+                  return UI(allData[index].MName,allData[index].Fajr,allData[index].Dhur,allData[index].Asr,allData[index].Maghrib,allData[index].Isha,
                   );
                 }
 
@@ -71,7 +74,7 @@ class _retrieveDataState extends State<retrieveData> {
 
 
 
-  Widget UI(String Fajr,String Dhur,String Asr,String Maghrib, String Isha) {
+  Widget UI(String MName,String Fajr,String Dhur,String Asr,String Maghrib, String Isha) {
     return new Card(
       elevation: 10.0,
       child: new Container(
@@ -80,6 +83,7 @@ class _retrieveDataState extends State<retrieveData> {
           //mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            new Text('Masjid Name: $MName',style: Theme.of(context).textTheme.title,),
             new Text('Fajr: $Fajr',style: Theme.of(context).textTheme.title,),
             new Text('Dhur: $Dhur',style: Theme.of(context).textTheme.title,),
             new Text('Asr: $Asr',style: Theme.of(context).textTheme.title,),

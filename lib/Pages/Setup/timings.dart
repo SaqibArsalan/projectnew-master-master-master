@@ -31,7 +31,7 @@ class _namazTimingsState extends State<namazTimings> {
   @override
   void initState() {
     super.initState();
-    item = Item("","","","","","");
+    item = Item("","","","","");
     final FirebaseDatabase database = FirebaseDatabase.instance; //Rather then just writing FirebaseDatabase(), get the instance.
     itemRef = database.reference().child('items');
     itemRef.onChildAdded.listen(_onEntryAdded);
@@ -41,8 +41,6 @@ class _namazTimingsState extends State<namazTimings> {
 
   _onEntryAdded(Event event) {
     setState(() {
-      item.Name="sadsad";
-      item.key="sadsadsadsadsa";
       items.add(Item.fromSnapshot(event.snapshot));
     });
   }
@@ -257,12 +255,10 @@ class Item {
   String Asr;
   String Maghrib;
   String Isha;
-  String Name;
-  Item(this.Name,this.Fajr, this.Dhur,this.Asr,this.Maghrib,this.Isha);
+  Item(this.Fajr, this.Dhur,this.Asr,this.Maghrib,this.Isha);
 
   Item.fromSnapshot(DataSnapshot snapshot)
       : key = snapshot.key,
-        Name=snapshot.value['Name'],
         Fajr= snapshot.value['Fajr'],
         Dhur = snapshot.value["Dhur"],
         Asr = snapshot.value["Asr"],
@@ -271,7 +267,6 @@ class Item {
 
   toJson() {
     return {
-      "Name":Name,
       "Fajr" : Fajr,
       "Dhur": Dhur,
       "Asr": Asr,

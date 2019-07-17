@@ -37,14 +37,15 @@ class _qiblaDirectionState extends State<qiblaDirection> {
     return new MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(
-          title: const Text('Flutter Compass'),
+          title: const Text('Qibla for Prayer'),
+          backgroundColor: Colors.brown,
         ),
         body: new Container(
           alignment: Alignment.center,
           color: Colors.white,
           child: new Transform.rotate(
             angle: ((_direction+(92)?? 0) * (math.pi / 180) * -1),
-            child: new Image.asset('assets/NorthStar.jpg'),
+            child: new Image.asset('assets/arrow.png'),
           ),
         ),
       ),

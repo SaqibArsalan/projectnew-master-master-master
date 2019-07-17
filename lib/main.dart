@@ -7,6 +7,9 @@ import 'package:geo_location_finder/geo_location_finder.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:project/Pages/Setup/MainPage.dart';
 import 'package:project/Pages/Setup/getTimings.dart';
+import 'package:project/Pages/Setup/retrieveData.dart';
+import 'package:project/Pages/Setup/signIn.dart';
+import 'package:project/Pages/Setup/timings.dart';
 import 'package:project/Pages/Setup/welcome.dart';
 
 
@@ -59,7 +62,6 @@ class _HomeState extends State {
   final Set<Polyline> _poly={};
 
   static  LatLng _lastMapPosition = _center;
-
 
 
   List<Widget> v=[];
@@ -199,14 +201,13 @@ class _HomeState extends State {
   Future _onMapCreated(GoogleMapController controller) async {
     _setLocation();
      _controller.complete(controller);
-     bool x=true;
 
-    _poly.add(new Polyline(
-      polylineId: PolylineId("abc"),
-      points: [new LatLng(_center.latitude, _center.longitude),new LatLng(24.9303021,67.0424375)],
-      color: Colors.blueAccent,
-      geodesic: true,
-    ));
+    //_poly.add(new Polyline(
+      //polylineId: PolylineId("abc"),
+     // points: [new LatLng(_center.latitude, _center.longitude),new LatLng(24.9303021,67.0424375)],
+      //color: Colors.blueAccent,
+      //geodesic: true,
+    //));
 
 
 
@@ -225,10 +226,9 @@ class _HomeState extends State {
           child : Container(
             padding: EdgeInsets.all(8),
             height:175,
-            decoration: BoxDecoration(color: Colors.white),
+            decoration: BoxDecoration(color: Colors.brown[50]),
             width: 290,
            child: Align(
-
              alignment: Alignment.topCenter,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -237,7 +237,7 @@ class _HomeState extends State {
                  ListTile(
                    title: Text(name[index],style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
                    subtitle: Text(address[index]),
-                   leading: Icon(Icons.indeterminate_check_box,color: Colors.greenAccent),
+                   leading: Icon(Icons.indeterminate_check_box,color: Colors.brown),
               ),
                  ButtonTheme.bar(
                    child: Align(
@@ -293,9 +293,9 @@ class _HomeState extends State {
 
         appBar: AppBar(
 
-          title: Text('Maps Sample App'),
+          title: Text('Pro Masjid Finder'),
 
-          backgroundColor: Colors.green[700],
+          backgroundColor: Colors.brown[700],
 
         ),
 
@@ -319,15 +319,9 @@ class _HomeState extends State {
 
               markers: _markers,
 
-
               onCameraMove: _onCameraMove,
 
               myLocationEnabled:true,
-
-              polylines: _poly,
-
-
-
 
 
             ),
@@ -361,7 +355,7 @@ class _HomeState extends State {
 
                       materialTapTargetSize: MaterialTapTargetSize.padded,
 
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.brown[700],
 
                       child: const Icon(Icons.map, size: 36.0),
 
@@ -377,7 +371,7 @@ class _HomeState extends State {
 
                       materialTapTargetSize: MaterialTapTargetSize.padded,
 
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.brown[700],
 
                       child: const Icon(Icons.add_location, size: 36.0),
 
@@ -385,11 +379,51 @@ class _HomeState extends State {
 
                     SizedBox(height: 16.0),
 
-                    RaisedButton(
-                      child: Text('Launch compass'),
+                    FloatingActionButton(
+                      child: const Icon(Icons.brightness_3, size:36.0),
+
+                      materialTapTargetSize: MaterialTapTargetSize.padded,
+
+
+                      backgroundColor: Colors.brown[700],
+
                       onPressed: () {
-                        Navigator.push(context,MaterialPageRoute(builder: (context) => Welcome()));
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => HomePage()));
                       },
+                    ),
+                    SizedBox(height: 16.0),
+
+                    new FloatingActionButton(
+                      heroTag: 'btne',
+
+                      onPressed: (){
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => qiblaDirection()));
+                      },
+
+                      materialTapTargetSize: MaterialTapTargetSize.padded,
+
+                      backgroundColor: Colors.brown[700],
+
+                      child: const Icon(Icons.arrow_upward, size: 36.0),
+
+                    ),
+
+
+                    SizedBox(height: 16.0),
+
+                    new FloatingActionButton(
+                      heroTag: 'btn6',
+
+                      onPressed: (){
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => retrieveData()));
+                      },
+
+                      materialTapTargetSize: MaterialTapTargetSize.padded,
+
+                      backgroundColor: Colors.brown[700],
+
+                      child: const Icon(Icons.access_time, size: 36.0),
+
                     ),
 
 //

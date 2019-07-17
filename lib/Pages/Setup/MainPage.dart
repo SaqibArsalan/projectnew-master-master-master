@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_app_firebase/Pages/Setup/signIn.dart';
 //import 'package:flutter_app_firebase/Pages/Setup/sign_up.dart';
 import 'package:geodesy/geodesy.dart';
+import 'package:project/Compass.dart';
+import 'package:project/Pages/Setup/getTimings.dart';
 //import 'package:flutter_app_firebase/Pages/Setup/timings.dart';
 import 'package:project/Pages/Setup/retrieveData.dart';
 import 'package:project/Pages/Setup/signIn.dart';
@@ -25,21 +27,38 @@ class _WelcomeState extends State<Welcome> {
         title: Text("Pro Masjid Finder"),
         centerTitle: true,
       ),
-       body: Center(
-         child: Container(
-           child:
+       body: Column(
+         mainAxisAlignment: MainAxisAlignment.center,
+         crossAxisAlignment: CrossAxisAlignment.stretch,
+         children: <Widget> [
+
+
            new RaisedButton(
-             onPressed: null,
+             onPressed: () {
+               Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+             },
              child: Text("Prayer Timings"),
 
            ),
+           new RaisedButton(
+             child: Text("Show Qibla Direction"),
+               onPressed: () {
+                 Navigator.push(context, MaterialPageRoute(builder: (context) => qiblaDirection()));
+               }
+           ),
+           new RaisedButton(
+             child: Text("Show Masjid Timings"),
+               onPressed: () {
+               Navigator.push(context, MaterialPageRoute(builder: (context) => retrieveData()));
+               }
+           ),
+           ],
 
          ),
-
-       )
-
-
     );
+
+
+
   }
 }
 

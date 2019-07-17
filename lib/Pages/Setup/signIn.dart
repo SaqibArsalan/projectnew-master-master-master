@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:project/Pages/Setup/home.dart';
 //import 'package:flutter_app_firebase/Pages/Setup/timings.dart';
 //import 'package:flutter_app_firebase/Pages/Setup/home.dart';
 import 'package:project/Pages/Setup/timings.dart';
@@ -70,14 +71,16 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> signIn() async {
-    if(_formKey.currentState.validate()) {
-      _formKey.currentState.save();
+    final formState = _formKey.currentState;
+
+    if(formState.validate()) {
+      formState.save();
 
 
       try{
-         await  FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
+        FirebaseUser user =  await  FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
 
-        Navigator.push(context,MaterialPageRoute(builder: (context) => namazTimings()));
+        Navigator.push(context,MaterialPageRoute(builder: (context) => Home(user: user)));
 
 
       }

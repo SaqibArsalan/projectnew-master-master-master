@@ -8,6 +8,7 @@ import 'package:geodesy/geodesy.dart';
 //import 'package:flutter_app_firebase/Pages/Setup/timings.dart';
 import 'package:project/Pages/Setup/retrieveData.dart';
 import 'package:project/Pages/Setup/signIn.dart';
+import 'package:project/Pages/Setup/sign_up.dart';
 import 'package:project/Pages/Setup/timings.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -58,7 +59,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
 
   void navigateToSignUp() {
-    Navigator.push(context,MaterialPageRoute(builder: (context) => retrieveData(), fullscreenDialog: true));
+    Navigator.push(context,MaterialPageRoute(builder: (context) => SignUpPage(), fullscreenDialog: true));
 
 
 
